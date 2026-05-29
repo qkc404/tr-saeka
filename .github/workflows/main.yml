@@ -1,0 +1,52 @@
+name: CI Validate and Push to DockerHub
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/tr-saeka
+
+jobs:
+  validate-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate JSON config
+        run: |
+          python3 -c "import json; json.load(open('config.json')); print('config.json is valid')"
+
+      - name: Validate nginx config directives
+        run: |
+          python3 -c "
+          with open('nginx.conf') as f:
+              content = f.read()
+          if 'listen 8080' not in content:
+              raise Exception('Missing listen 8080')
+          if 'proxy_pass' not in content:
+              raise Exception('Missing proxy_pass')
+          if '/saeka-tojirp' not in content:
+              raise Exception('Missing /saeka-tojirp location')
+          print('nginx.conf has required directives')
+          "
+
+      - name: Build Docker image
+        run: |
+          docker build -t $IMAGE:${{ github.sha }} .
+          docker tag $IMAGE:${{ github.sha }} $IMAGE:latest
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push to DockerHub
+        run: |
+          docker push $IMAGE:${{ github.sha }}
+          docker push $IMAGE:latest
