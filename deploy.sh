@@ -100,4 +100,23 @@ echo -e "${CYAN} DEPLOYED SUCCESSFULLY (⁠◠⁠‿⁠・⁠)⁠—⁠☆ ${RES
 echo -e "${CYAN} FULL URL (⁠｡⁠•̀⁠ᴗ⁠-⁠)  ${GREEN}${SERVICE_URL}${RESET}"
 echo -e "${BLUE}────────────────────────────────────────────────────${RESET}"
 
+echo -e "\n${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "${CYAN}                    PROTOCOLS & CREDENTIALS${RESET}"
+echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo ""
+echo -e "${CYAN}  PROTOCOL     | USERNAME/PASSWORD  | WS PATH            | HTTPUPGRADE PATH${RESET}"
+echo -e "${YELLOW}  ─────────────────────────────────────────────────────────────────────${RESET}"
+echo -e "  ${GREEN}VLESS${RESET}        | ${GREEN}saekaaa${RESET}           | ${CYAN}/saeka-vless${RESET}    | ${CYAN}/saeka-vless?ed=1280${RESET}"
+echo -e "  ${GREEN}VMess${RESET}        | ${GREEN}saekaaa${RESET}           | ${CYAN}/saeka-vmess${RESET}    | ${CYAN}/saeka-vmess?ed=1280${RESET}"
+echo -e "  ${GREEN}TROJAN${RESET}       | ${GREEN}saeka${RESET}             | ${CYAN}/saeka-tojirp${RESET}  | ${CYAN}/saeka-tojirp?ed=1280${RESET}"
+echo -e "  ${GREEN}Shadowsocks${RESET}  | ${GREEN}saeka${RESET}             | ${CYAN}/saeka-ss${RESET}       | ${CYAN}/saeka-ss?ed=1280${RESET}"
+echo ""
+echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "${CYAN}  HOST: ${GREEN}${CLEAN_HOST}${RESET}"
+echo -e "${CYAN}  PORT: ${GREEN}443${RESET}"
+echo -e "${CYAN}  SNI:  ${GREEN}fcmtoken.googleapis.com${RESET}"
+echo -e "${CYAN}  ALPN: ${GREEN}h2${RESET}"
+echo -e "${CYAN}  FP:   ${GREEN}chrome${RESET}"
+echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+
 rm -f build.log deploy.log
