@@ -8,15 +8,13 @@ RUN wget -qO /tmp/xray.zip https://github.com/XTLS/Xray-core/releases/download/v
 
 COPY config.json /etc/xray.json
 COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5 \
     CMD curl -f http://localhost:8080/health || exit 1
 
-# Use shell form to prevent signal issues
-CMD /usr/local/bin/xray run -c /etc/xray.json 2>&1 & \
-    echo "Waiting for Xray..." && \
-    while ! nc -z 127.0.0.1 10000; do sleep 1; done && \
-    echo "Xray ready. Starting OpenResty..." && \
-    /usr/local/openresty/bin/openresty -g 'daemon off;'
+ENTRYPOINT ["/entrypoint.sh"]
