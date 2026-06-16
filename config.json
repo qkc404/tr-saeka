@@ -34,7 +34,7 @@
       "streamSettings": {
         "network": "httpupgrade",
         "httpupgradeSettings": {
-          "path": "/saeka?ed=1280",
+          "path": "/saeka",
           "host": ""
         },
         "sockopt": {
