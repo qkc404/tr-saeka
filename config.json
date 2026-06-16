@@ -27,7 +27,7 @@
             "sniffing": {"enabled": true, "destOverride": ["http", "tls"]}
         },
         {
-            "port": 10000,
+            "port": 10001,
             "listen": "127.0.0.1",
             "protocol": "trojan",
             "tag": "trojan-httpupgrade",
