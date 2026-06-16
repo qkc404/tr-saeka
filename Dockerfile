@@ -11,19 +11,13 @@ COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 
 EXPOSE 8080
 
-HEALTHCHECK --interval=30s --timeout=15s --start-period=120s --retries=5 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5 \
     CMD curl -f http://localhost:8080/health || exit 1
 
 # Use shell form to prevent signal issues
 CMD /usr/local/bin/xray run -c /etc/xray.json 2>&1 & \
     echo "Waiting for Xray..." && \
     while ! nc -z 127.0.0.1 10000; do sleep 1; done && \
-    while ! nc -z 127.0.0.1 10001; do sleep 1; done && \
-    while ! nc -z 127.0.0.1 10002; do sleep 1; done && \
-    while ! nc -z 127.0.0.1 10003; do sleep 1; done && \
-    while ! nc -z 127.0.0.1 10004; do sleep 1; done && \
-    while ! nc -z 127.0.0.1 10005; do sleep 1; done && \
-    while ! nc -z 127.0.0.1 10006; do sleep 1; done && \
-    while ! nc -z 127.0.0.1 10007; do sleep 1; done && \
     echo "Xray ready. Starting OpenResty..." && \
     /usr/local/openresty/bin/openresty -g 'daemon off;'
+    
