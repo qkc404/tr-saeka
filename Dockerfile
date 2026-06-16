@@ -11,7 +11,7 @@ COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 
 EXPOSE 8080
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5 \
+HEALTHCHECK --interval=30s --timeout=15s --start-period=120s --retries=5 \
     CMD curl -f http://localhost:8080/health || exit 1
 
 # Use shell form to prevent signal issues
