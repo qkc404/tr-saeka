@@ -25,6 +25,5 @@ CMD /usr/local/bin/xray run -c /etc/xray.json 2>&1 & \
     while ! nc -z 127.0.0.1 10005; do sleep 1; done && \
     while ! nc -z 127.0.0.1 10006; do sleep 1; done && \
     while ! nc -z 127.0.0.1 10007; do sleep 1; done && \
-    while ! nc -z 127.0.0.1 10008; do sleep 1; done && \
     echo "Xray ready. Starting OpenResty..." && \
     /usr/local/openresty/bin/openresty -g 'daemon off;'
